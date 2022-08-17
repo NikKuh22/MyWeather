@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct NetworkModel: Decodable {
+struct TodayWeatherNetworkModel: Decodable {
     var cord: Cord?
     var weather: [Weather]
     var base: String
@@ -34,7 +34,7 @@ struct NetworkModel: Decodable {
         self.sys = Sys()
         self.timezone = 0
         self.id = 0
-        self.name = ""
+        self.name = "Test"
         self.cod = 0
     }
 }

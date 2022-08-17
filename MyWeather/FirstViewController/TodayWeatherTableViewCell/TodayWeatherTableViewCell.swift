@@ -9,31 +9,25 @@ import UIKit
 
 final class TodayWeatherTableViewCell: UITableViewCell {
     
-    var todayWeather = NetworkModel()
+    @IBOutlet var cityLabel: UILabel!
+    @IBOutlet var dayLabel: UILabel!
+    @IBOutlet var tempLabel: UILabel!
+    @IBOutlet var humidityLabel: UILabel!
+    @IBOutlet var windLabel: UILabel!
     
+    @IBOutlet var weatherImage: UIImageView!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        let urlString = "https://api.openweathermap.org/data/2.5/weather?lat=49.9808100&lon=36.2527200&appid=ab9e156b0d72b67b72bcf69beeef701b&units=metric&lang=ru"
-        guard let url = URL(string: urlString) else { return }
-        
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard data != nil else { return }
-//            let proverka = String(data: data!, encoding: .utf8)
-//            print(proverka)
-            
-            do {
-                let task = try JSONDecoder().decode(NetworkModel.self, from: data!)
-                print(task)
-                DispatchQueue.main.async {
-                    self.todayWeather = task
-                }
-            } catch {
-                print(error)
-            }
-            
-        }.resume()
-        
     }
+    
+    func configureTodayWeather(model: TodayWeatherNetworkModel) {
+        cityLabel.text = model.name
+        tempLabel.text = "\(Int(model.main.temp))°"
+        humidityLabel.text = "\(model.main.humidity)%"
+        windLabel.text = "\(model.wind.speed)m/s"
+    }
+    
 }
 
