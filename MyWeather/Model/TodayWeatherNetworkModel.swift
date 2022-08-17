@@ -34,7 +34,7 @@ struct TodayWeatherNetworkModel: Decodable {
         self.sys = Sys()
         self.timezone = 0
         self.id = 0
-        self.name = "Test"
+        self.name = "Location"
         self.cod = 0
     }
 }

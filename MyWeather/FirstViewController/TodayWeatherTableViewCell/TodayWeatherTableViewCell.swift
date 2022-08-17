@@ -27,6 +27,7 @@ final class TodayWeatherTableViewCell: UITableViewCell {
         tempLabel.text = "\(Int(model.main.temp))°"
         humidityLabel.text = "\(model.main.humidity)%"
         windLabel.text = "\(model.wind.speed)m/s"
+    
     }
     
 }

@@ -14,6 +14,19 @@ final class ViewController: UIViewController {
     var network = Network()
     var todayWeatherModel = TodayWeatherNetworkModel()
     var weatherForFiveDaysModel = HourlyWeatherNetworkModel()
+    var weatherArrayModel = [List]()
+    
+    var weatherArrayHight: [List] {
+        return weatherArrayModel.filter { list in
+            list.dt_txt.contains("15:00:00")
+        }
+    }
+    
+    var weatherArrayLow: [List] {
+        return weatherArrayModel.filter { list in
+            list.dt_txt.contains("21:00:00")
+        }
+    }
     
 
     override func viewDidLoad() {
@@ -41,11 +54,13 @@ final class ViewController: UIViewController {
             self.todayWeatherModel = weather
 //            print(self.todayWeather)
         }
-        
+
         network.fetchForecast { forecast in
             self.weatherForFiveDaysModel = forecast
+            self.weatherArrayModel = forecast.list
 //            print(self.weatherForFiveDays)
             self.tableView.reloadData()
+
         }
         
     }
@@ -53,7 +68,7 @@ final class ViewController: UIViewController {
 
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        7
+        weatherArrayHight.count + 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -68,6 +83,8 @@ extension ViewController: UITableViewDataSource {
             return cellSecond
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "ForFiveDaysWeatherTableViewCell", for: indexPath) as! ForFiveDaysWeatherTableViewCell
+//        cell.configureWeatherForFiveDays(model: weatherArrayHight[indexPath.row - 2])
+        cell.configureWeatherForFiveDays(modelHightTemp: weatherArrayHight[indexPath.row - 2], modelLowTemp: weatherArrayLow[indexPath.row - 2])
         return cell
     }
 }
