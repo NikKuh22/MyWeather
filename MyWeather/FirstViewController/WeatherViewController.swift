@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ViewController: UIViewController {
+final class WeatherViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     
@@ -68,7 +68,7 @@ final class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UITableViewDataSource {
+extension WeatherViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         weatherArrayHight.count + 2
     }
