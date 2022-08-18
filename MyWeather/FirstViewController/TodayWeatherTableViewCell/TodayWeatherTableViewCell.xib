@@ -39,8 +39,8 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="cFj-d7-ZDd">
                                 <rect key="frame" x="0.0" y="89.5" width="279.5" height="109.5"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloud.sun" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="sxM-Qf-rs9">
-                                        <rect key="frame" x="0.0" y="-0.5" width="151" height="108.5"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sxM-Qf-rs9">
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="109.5"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="150" id="PM8-bP-6cv"/>
@@ -130,7 +130,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="cloud.sun" catalog="system" width="128" height="95"/>
         <image name="humidity" catalog="system" width="128" height="98"/>
         <image name="thermometer" catalog="system" width="81" height="128"/>
         <image name="wind" catalog="system" width="128" height="103"/>

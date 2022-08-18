@@ -16,8 +16,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="131" height="142"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloud.sun" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pOf-dl-eIM">
-                        <rect key="frame" x="40.5" y="50.5" width="51" height="49"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pOf-dl-eIM">
+                        <rect key="frame" x="40.5" y="51" width="50" height="50"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="pOf-dl-eIM" secondAttribute="height" multiplier="1:1" id="57F-9x-4sv"/>
@@ -57,7 +57,4 @@
             <point key="canvasLocation" x="22.463768115942031" y="101.78571428571428"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="cloud.sun" catalog="system" width="128" height="95"/>
-    </resources>
 </document>

@@ -13,17 +13,18 @@ final class ViewController: UIViewController {
     
     var network = Network()
     var todayWeatherModel = TodayWeatherNetworkModel()
-    var weatherForFiveDaysModel = HourlyWeatherNetworkModel()
-    var weatherArrayModel = [List]()
+    var hourlyWeatherModel = HourlyWeatherNetworkModel()
+    var listModel = [List]()
+    var weatherModel = [Weather]()
     
     var weatherArrayHight: [List] {
-        return weatherArrayModel.filter { list in
+        return listModel.filter { list in
             list.dt_txt.contains("15:00:00")
         }
     }
     
     var weatherArrayLow: [List] {
-        return weatherArrayModel.filter { list in
+        return listModel.filter { list in
             list.dt_txt.contains("21:00:00")
         }
     }
@@ -56,8 +57,8 @@ final class ViewController: UIViewController {
         }
 
         network.fetchForecast { forecast in
-            self.weatherForFiveDaysModel = forecast
-            self.weatherArrayModel = forecast.list
+            self.hourlyWeatherModel = forecast
+            self.listModel = forecast.list
 //            print(self.weatherForFiveDays)
             self.tableView.reloadData()
 //            print(self.weatherArrayHight)

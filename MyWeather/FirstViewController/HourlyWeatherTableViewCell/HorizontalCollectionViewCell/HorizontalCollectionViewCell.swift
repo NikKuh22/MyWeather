@@ -25,6 +25,7 @@ class HorizontalCollectionViewCell: UICollectionViewCell {
         let dateFromNetwork = dateFormater.date(from: model.dt_txt)
         let hour = dateFromNetwork?.get(.hour) ?? 0
         timeLabel.text = "\(hour):00"
+        imageLabel.image = model.weather.first?.main.image
         }
     }
 

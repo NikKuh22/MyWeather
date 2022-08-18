@@ -30,6 +30,7 @@ final class ForFiveDaysWeatherTableViewCell: UITableViewCell {
         } else {
             dayLabel.text = "\(date).\(month)"
         }
+        imageLabel.image = modelHightTemp.weather.first?.main.image
     }
 }
 

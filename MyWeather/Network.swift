@@ -9,9 +9,9 @@ import UIKit
 
 final class Network {
     
-    static private let hourlyWeatherAPI = "https://api.openweathermap.org/data/2.5/forecast?lat=49.9808100&lon=36.2527200&appid=ab9e156b0d72b67b72bcf69beeef701b&units=metric"
+    static private let hourlyWeatherAPI = "https://api.openweathermap.org/data/2.5/forecast?lat=49.4216100&lon=26.9965300&appid=ab9e156b0d72b67b72bcf69beeef701b&units=metric"
     
-    static private let todayWeatherAPI = "https://api.openweathermap.org/data/2.5/weather?lat=49.9808100&lon=36.2527200&appid=ab9e156b0d72b67b72bcf69beeef701b&units=metric"
+    static private let todayWeatherAPI = "https://api.openweathermap.org/data/2.5/weather?lat=49.4216100&lon=26.9965300&appid=ab9e156b0d72b67b72bcf69beeef701b&units=metric"
     
     func fetchWeather(completion: @escaping (TodayWeatherNetworkModel) -> Void) {
         guard let todayWeatherURL = URL(string: Network.todayWeatherAPI) else { return }
