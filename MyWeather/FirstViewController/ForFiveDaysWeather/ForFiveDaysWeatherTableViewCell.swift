@@ -9,12 +9,11 @@ import UIKit
 
 final class ForFiveDaysWeatherTableViewCell: UITableViewCell {
     
-    let date = Date()
     let dateFormater = DateFormatter()
     
+    @IBOutlet var dayLabel: UILabel!
     @IBOutlet var imageLabel: UIImageView!
     @IBOutlet var tempLabel: UILabel!
-    @IBOutlet var dayLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,7 +22,7 @@ final class ForFiveDaysWeatherTableViewCell: UITableViewCell {
     func configureWeatherForFiveDays(modelHightTemp: List, modelLowTemp: List) {
         tempLabel.text = "\(Int(modelHightTemp.main.temp))°/\(Int(modelLowTemp.main.temp))°"
         dateFormater.dateFormat = "yyyy-MM-dd HH:mm:mm"
-        let dateFromNetwork = dateFormater.date(from: modelHightTemp.dt_txt)
+        let dateFromNetwork = dateFormater.date(from: modelLowTemp.dt_txt)
         let date = dateFromNetwork?.get(.day) ?? 0
         let month = dateFromNetwork?.get(.month) ?? 0
         if month <= 9 {

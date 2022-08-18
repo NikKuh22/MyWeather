@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 struct Weather: Decodable {
     var id: Int
     var main: String

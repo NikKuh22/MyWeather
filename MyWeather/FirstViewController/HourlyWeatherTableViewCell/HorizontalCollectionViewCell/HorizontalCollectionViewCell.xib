@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HorizontalCollectionViewCell" id="gTV-IL-0wX" customClass="HorizontalCollectionViewCell" customModule="MyWeather" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="131" height="142"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="131" height="142"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloud.sun" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pOf-dl-eIM">
+                        <rect key="frame" x="40.5" y="50.5" width="51" height="49"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="pOf-dl-eIM" secondAttribute="height" multiplier="1:1" id="57F-9x-4sv"/>
+                            <constraint firstAttribute="width" constant="50" id="c8W-m9-Tpk"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sen-lB-Pcc">
+                        <rect key="frame" x="46.5" y="10" width="38.5" height="31"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Temp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6wZ-tC-VEr">
+                        <rect key="frame" x="43" y="111" width="45" height="21"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="pOf-dl-eIM" firstAttribute="top" secondItem="Sen-lB-Pcc" secondAttribute="bottom" constant="10" id="DqQ-Do-4GX"/>
+                <constraint firstItem="6wZ-tC-VEr" firstAttribute="top" secondItem="pOf-dl-eIM" secondAttribute="bottom" constant="10" id="EGq-M9-cIf"/>
+                <constraint firstItem="pOf-dl-eIM" firstAttribute="centerX" secondItem="Sen-lB-Pcc" secondAttribute="centerX" id="c55-VO-E2b"/>
+                <constraint firstItem="Sen-lB-Pcc" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="dcb-8s-wa2"/>
+                <constraint firstItem="Sen-lB-Pcc" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="fdP-UQ-v3t"/>
+                <constraint firstItem="6wZ-tC-VEr" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="nXD-Oc-dqx"/>
+                <constraint firstAttribute="bottom" secondItem="6wZ-tC-VEr" secondAttribute="bottom" constant="10" id="qor-km-dRO"/>
+            </constraints>
+            <size key="customSize" width="131" height="142"/>
+            <connections>
+                <outlet property="imageLabel" destination="pOf-dl-eIM" id="J3l-wm-nzo"/>
+                <outlet property="tempLabel" destination="6wZ-tC-VEr" id="vRD-VT-7Cg"/>
+                <outlet property="timeLabel" destination="Sen-lB-Pcc" id="6QM-Qh-LVc"/>
+            </connections>
+            <point key="canvasLocation" x="22.463768115942031" y="101.78571428571428"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="cloud.sun" catalog="system" width="128" height="95"/>
+    </resources>
+</document>

@@ -60,7 +60,8 @@ final class ViewController: UIViewController {
             self.weatherArrayModel = forecast.list
 //            print(self.weatherForFiveDays)
             self.tableView.reloadData()
-
+//            print(self.weatherArrayHight)
+//            print(self.weatherArrayLow)
         }
         
     }
