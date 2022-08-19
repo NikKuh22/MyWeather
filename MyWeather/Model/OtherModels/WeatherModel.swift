@@ -47,7 +47,7 @@ enum MainWeather: String, Decodable {
     }
 }
 
-struct Weather: Decodable {
+struct WeatherModel: Decodable {
     var id: Int
     var main: MainWeather
     var description: String

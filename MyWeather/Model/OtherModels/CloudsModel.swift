@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Clouds: Decodable {
+struct CloudsModel: Decodable {
     var all: Int
     
     init() {

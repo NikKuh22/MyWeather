@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Sys: Decodable {
+struct SysModel: Decodable {
     var country: String
     var sunrise: Int
     var sunset: Int

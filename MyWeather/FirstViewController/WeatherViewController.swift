@@ -9,13 +9,13 @@ import UIKit
 
 final class WeatherViewController: UIViewController {
     
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet var weatherTableView: UITableView!
     
     var network = Network()
     var todayWeatherModel = TodayWeatherNetworkModel()
     var hourlyWeatherModel = HourlyWeatherNetworkModel()
     var listModel = [List]()
-    var weatherModel = [Weather]()
+    var weatherModel = [WeatherModel]()
     
     var weatherArrayHight: [List] {
         return listModel.filter { list in
@@ -33,19 +33,19 @@ final class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.dataSource = self
+        weatherTableView.dataSource = self
         
-        tableView.register(
+        weatherTableView.register(
             UINib(nibName: "TodayWeatherTableViewCell", bundle: .main),
             forCellReuseIdentifier: "TodayWeatherTableViewCell"
         )
         
-        tableView.register(
+        weatherTableView.register(
             UINib(nibName: "HourlyWeatherTableViewCell", bundle: .main),
             forCellReuseIdentifier: "HourlyWeatherTableViewCell"
         )
         
-        tableView.register(
+        weatherTableView.register(
             UINib(nibName: "ForFiveDaysWeatherTableViewCell", bundle: .main),
             forCellReuseIdentifier: "ForFiveDaysWeatherTableViewCell"
         )
@@ -60,7 +60,7 @@ final class WeatherViewController: UIViewController {
             self.hourlyWeatherModel = forecast
             self.listModel = forecast.list
 //            print(self.weatherForFiveDays)
-            self.tableView.reloadData()
+            self.weatherTableView.reloadData()
 //            print(self.weatherArrayHight)
 //            print(self.weatherArrayLow)
         }

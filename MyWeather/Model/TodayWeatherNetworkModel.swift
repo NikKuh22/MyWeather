@@ -8,30 +8,30 @@
 import UIKit
 
 struct TodayWeatherNetworkModel: Decodable {
-    var cord: Cord?
-    var weather: [Weather]
+    var cord: CordModel?
+    var weather: [WeatherModel]
     var base: String
-    var main: Main
+    var main: MainModel
     var visibility: Int
-    var wind: Wind
-    var clouds: Clouds
+    var wind: WindModel
+    var clouds: CloudsModel
     var dt: Int
-    var sys: Sys
+    var sys: SysModel
     var timezone: Int
     var id: Int
     var name: String
     var cod: Int
     
     init() {
-        self.cord = Cord()
-        self.weather = [Weather]()
+        self.cord = CordModel()
+        self.weather = [WeatherModel]()
         self.base = ""
-        self.main = Main()
+        self.main = MainModel()
         self.visibility = 0
-        self.wind = Wind()
-        self.clouds = Clouds()
+        self.wind = WindModel()
+        self.clouds = CloudsModel()
         self.dt = 0
-        self.sys = Sys()
+        self.sys = SysModel()
         self.timezone = 0
         self.id = 0
         self.name = "Location"

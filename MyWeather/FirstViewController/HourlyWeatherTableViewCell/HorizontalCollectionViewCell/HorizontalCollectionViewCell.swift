@@ -13,7 +13,7 @@ class HorizontalCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet var timeLabel: UILabel!
     @IBOutlet var tempLabel: UILabel!
-    @IBOutlet var imageLabel: UIImageView!
+    @IBOutlet var weatherImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,7 +25,7 @@ class HorizontalCollectionViewCell: UICollectionViewCell {
         let dateFromNetwork = dateFormater.date(from: model.dt_txt)
         let hour = dateFromNetwork?.get(.hour) ?? 0
         timeLabel.text = "\(hour):00"
-        imageLabel.image = model.weather.first?.main.image
+        weatherImageView.image = model.weather.first?.main.image
         }
     }
 

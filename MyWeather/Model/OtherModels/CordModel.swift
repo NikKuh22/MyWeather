@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Cord: Decodable {
+struct CordModel: Decodable {
     var lon: Double
     var lat: Double
     

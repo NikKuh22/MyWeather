@@ -50,9 +50,9 @@
             </constraints>
             <size key="customSize" width="131" height="142"/>
             <connections>
-                <outlet property="imageLabel" destination="pOf-dl-eIM" id="J3l-wm-nzo"/>
                 <outlet property="tempLabel" destination="6wZ-tC-VEr" id="vRD-VT-7Cg"/>
                 <outlet property="timeLabel" destination="Sen-lB-Pcc" id="6QM-Qh-LVc"/>
+                <outlet property="weatherImageView" destination="pOf-dl-eIM" id="J3l-wm-nzo"/>
             </connections>
             <point key="canvasLocation" x="22.463768115942031" y="101.78571428571428"/>
         </collectionViewCell>

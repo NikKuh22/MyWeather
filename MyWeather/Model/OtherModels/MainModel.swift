@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Main: Decodable {
+struct MainModel: Decodable {
     var temp: Double
     var feels_like: Double
     var temp_min: Double

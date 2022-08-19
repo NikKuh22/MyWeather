@@ -9,20 +9,20 @@ import UIKit
 
 struct List: Decodable {
     var dt: Int
-    var main: Main
-    var weather: [Weather]
-    var clouds: Clouds
-    var wind: Wind
+    var main: MainModel
+    var weather: [WeatherModel]
+    var clouds: CloudsModel
+    var wind: WindModel
     var visibility: Int
     var pop: Double
     var dt_txt: String
     
     init() {
         self.dt = 0
-        self.main = Main()
-        self.weather = [Weather]()
-        self.clouds = Clouds()
-        self.wind = Wind()
+        self.main = MainModel()
+        self.weather = [WeatherModel]()
+        self.clouds = CloudsModel()
+        self.wind = WindModel()
         self.visibility = 0
         self.pop = 0.0
         self.dt_txt = ""
@@ -32,7 +32,7 @@ struct List: Decodable {
 struct City: Decodable {
     var id: Int
     var name: String
-    var coord: Cord
+    var coord: CordModel
     var country: String
     var population: Int
     var timezone: Int
@@ -42,7 +42,7 @@ struct City: Decodable {
     init() {
         self.id = 0
         self.name = ""
-        self.coord = Cord()
+        self.coord = CordModel()
         self.country = ""
         self.population = 0
         self.timezone = 0

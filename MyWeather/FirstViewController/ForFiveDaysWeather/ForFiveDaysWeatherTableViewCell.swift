@@ -12,7 +12,7 @@ final class ForFiveDaysWeatherTableViewCell: UITableViewCell {
     let dateFormater = DateFormatter()
     
     @IBOutlet var dayLabel: UILabel!
-    @IBOutlet var imageLabel: UIImageView!
+    @IBOutlet var weatherImageView: UIImageView!
     @IBOutlet var tempLabel: UILabel!
     
     override func awakeFromNib() {
@@ -30,7 +30,7 @@ final class ForFiveDaysWeatherTableViewCell: UITableViewCell {
         } else {
             dayLabel.text = "\(date).\(month)"
         }
-        imageLabel.image = modelHightTemp.weather.first?.main.image
+        weatherImageView.image = modelHightTemp.weather.first?.main.image
     }
 }
 
