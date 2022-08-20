@@ -14,16 +14,16 @@ final class WeatherViewController: UIViewController {
     var network = Network()
     var todayWeatherModel = TodayWeatherNetworkModel()
     var hourlyWeatherModel = HourlyWeatherNetworkModel()
-    var listModel = [List]()
+    var listModel = [ListModel]()
     var weatherModel = [WeatherModel]()
     
-    var weatherArrayHight: [List] {
+    var weatherArrayHight: [ListModel] {
         return listModel.filter { list in
             list.dt_txt.contains("15:00:00")
         }
     }
     
-    var weatherArrayLow: [List] {
+    var weatherArrayLow: [ListModel] {
         return listModel.filter { list in
             list.dt_txt.contains("21:00:00")
         }

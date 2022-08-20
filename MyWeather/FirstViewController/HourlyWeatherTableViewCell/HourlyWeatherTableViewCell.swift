@@ -9,7 +9,7 @@ import UIKit
 
 final class HourlyWeatherTableViewCell: UITableViewCell {
     
-    var weatherArrayModel = [List]()
+    var weatherArrayModel = [ListModel]()
     var network = Network()
     
     @IBOutlet var horizontalCollectionView: UICollectionView!

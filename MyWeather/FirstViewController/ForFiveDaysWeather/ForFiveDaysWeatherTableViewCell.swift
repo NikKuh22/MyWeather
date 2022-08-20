@@ -19,7 +19,7 @@ final class ForFiveDaysWeatherTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-    func configureWeatherForFiveDays(modelHightTemp: List, modelLowTemp: List) {
+    func configureWeatherForFiveDays(modelHightTemp: ListModel, modelLowTemp: ListModel) {
         tempLabel.text = "\(Int(modelHightTemp.main.temp))°/\(Int(modelLowTemp.main.temp))°"
         dateFormater.dateFormat = "yyyy-MM-dd HH:mm:mm"
         let dateFromNetwork = dateFormater.date(from: modelLowTemp.dt_txt)

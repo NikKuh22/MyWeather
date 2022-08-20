@@ -19,7 +19,7 @@ class HorizontalCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func configCollectionViewCell(model: List) {
+    func configCollectionViewCell(model: ListModel) {
         tempLabel.text = "\(Int(model.main.temp))°"
         dateFormater.dateFormat = "yyyy-MM-dd HH:mm:mm"
         let dateFromNetwork = dateFormater.date(from: model.dt_txt)
