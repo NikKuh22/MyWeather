@@ -51,16 +51,16 @@ final class WeatherViewController: UIViewController {
         )
         
         
-        network.fetchWeather { weather in
-            self.todayWeatherModel = weather
+        network.fetchWeather { [weak self] weather in
+            self?.todayWeatherModel = weather
 //            print(self.todayWeather)
         }
 
-        network.fetchForecast { forecast in
-            self.hourlyWeatherModel = forecast
-            self.listModel = forecast.list
+        network.fetchForecast { [weak self] forecast in
+            self?.hourlyWeatherModel = forecast
+            self?.listModel = forecast.list
 //            print(self.weatherForFiveDays)
-            self.weatherTableView.reloadData()
+            self?.weatherTableView.reloadData()
 //            print(self.weatherArrayHight)
 //            print(self.weatherArrayLow)
         }
