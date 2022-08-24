@@ -14,8 +14,8 @@ struct MainModel: Decodable {
     var temp_max: Double
     var pressure: Int
     var humidity: Int
-    var sea_level: Int
-    var grnd_level: Int
+    var sea_level: Int?
+    var grnd_level: Int?
     
     init() {
         self.temp = 0.0

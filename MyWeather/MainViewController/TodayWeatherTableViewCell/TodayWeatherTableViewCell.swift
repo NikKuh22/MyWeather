@@ -17,6 +17,10 @@ final class TodayWeatherTableViewCell: UITableViewCell {
     
     @IBOutlet var weatherImage: UIImageView!
 
+    @IBAction func presentCities(_ sender: UIButton) {
+        let citiesViewController = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "CitiesViewController") as! CitiesViewController
+        self.window?.rootViewController?.present(citiesViewController, animated: true)
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         
