@@ -10,7 +10,7 @@ import Foundation
 struct WindModel: Decodable {
     var speed: Double
     var deg: Int
-    var gust: Double
+    var gust: Double?
     
     init() {
         self.speed = 0.0

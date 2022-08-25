@@ -7,8 +7,14 @@
 
 import UIKit
 
-class CitiesViewController: UIViewController {
+protocol CitiesViewControllerDelegate: AnyObject {
+    func reloadTableView()
+}
 
+class CitiesViewController: UIViewController {
+    
+    weak var delegate: CitiesViewControllerDelegate?
+    
     let citiesModel: [CitiesModel] = [
         CitiesModel(name: "Kharkiv", lat: "49,9808", lon: "36,2527"),
         CitiesModel(name: "Kyiv", lat: "50.4546600", lon: "30.5238000"),
@@ -31,6 +37,7 @@ class CitiesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+            
         citiesTableView.dataSource = self
         citiesTableView.delegate = self
         
@@ -52,6 +59,10 @@ extension CitiesViewController: UITableViewDataSource {
 
 extension CitiesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        self.present(WeatherViewController(), animated: true)
+//        let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "WeatherViewController") as! WeatherViewController
+        Network.lon = citiesModel[indexPath.row].lon
+        Network.lat = citiesModel[indexPath.row].lat
+        delegate?.reloadTableView()
+        self.dismiss(animated: true)
     }
 }

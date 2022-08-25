@@ -21,6 +21,7 @@ final class TodayWeatherTableViewCell: UITableViewCell {
         let citiesViewController = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "CitiesViewController") as! CitiesViewController
         self.window?.rootViewController?.present(citiesViewController, animated: true)
     }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         

@@ -16,6 +16,7 @@ final class WeatherViewController: UIViewController {
     var hourlyWeatherModel = HourlyWeatherNetworkModel()
     var listModel = [ListModel]()
     var weatherModel = [WeatherModel]()
+    var citiesVC = CitiesViewController()
     
     var weatherArrayHight: [ListModel] {
         return listModel.filter { list in
@@ -32,6 +33,8 @@ final class WeatherViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        citiesVC.delegate = self
         
         weatherTableView.dataSource = self
         
@@ -64,7 +67,11 @@ final class WeatherViewController: UIViewController {
 //            print(self.weatherArrayHight)
 //            print(self.weatherArrayLow)
         }
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.weatherTableView.reloadData()
     }
 }
 
@@ -88,5 +95,23 @@ extension WeatherViewController: UITableViewDataSource {
 //        cell.configureWeatherForFiveDays(model: weatherArrayHight[indexPath.row - 2])
         cell.configureWeatherForFiveDays(modelHightTemp: weatherArrayHight[indexPath.row - 2], modelLowTemp: weatherArrayLow[indexPath.row - 2])
         return cell
+    }
+}
+
+extension WeatherViewController: CitiesViewControllerDelegate {
+    func reloadTableView() {
+        network.fetchWeather { [weak self] weather in
+            self?.todayWeatherModel = weather
+//            print(self.todayWeather)
+        }
+
+        network.fetchForecast { [weak self] forecast in
+            self?.hourlyWeatherModel = forecast
+            self?.listModel = forecast.list
+//            print(self.weatherForFiveDays)
+            self?.weatherTableView.reloadData()
+//            print(self.weatherArrayHight)
+//            print(self.weatherArrayLow)
+        }
     }
 }
