@@ -8,23 +8,34 @@
 import Foundation
 
 struct MainModel: Decodable {
-    var temp: Double
-    var feels_like: Double
-    var temp_min: Double
-    var temp_max: Double
+    var temperature: Double
+    var feelsLike: Double
+    var temperatureMin: Double
+    var temperatureMax: Double
     var pressure: Int
     var humidity: Int
-    var sea_level: Int?
-    var grnd_level: Int?
+    var seaLevel: Int?
+    var groundLevel: Int?
+    
+    enum CodingKeys: String, CodingKey {
+        case temperature = "temp"
+        case feelsLike = "feels_like"
+        case temperatureMin = "temp_min"
+        case temperatureMax = "temp_max"
+        case pressure
+        case humidity
+        case seaLevel = "sea_level"
+        case groundLevel = "grnd_level"
+    }
     
     init() {
-        self.temp = 0.0
-        self.feels_like = 0.0
-        self.temp_min = 0.0
-        self.temp_max = 0.0
+        self.temperature = 0.0
+        self.feelsLike = 0.0
+        self.temperatureMin = 0.0
+        self.temperatureMax = 0.0
         self.pressure = 0
         self.humidity = 0
-        self.sea_level = 0
-        self.grnd_level = 0
+        self.seaLevel = 0
+        self.groundLevel = 0
     }
 }

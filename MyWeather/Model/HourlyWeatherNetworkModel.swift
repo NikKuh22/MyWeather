@@ -12,12 +12,4 @@ struct HourlyWeatherNetworkModel: Decodable {
     var message: Int
     var list: [ListModel]
     var city: CityModel
-    
-    init() {
-        self.cod = ""
-        self.message = 0
-        self.list = [ListModel]()
-        self.city = CityModel()
-    }
-    
 }

@@ -7,20 +7,17 @@
 
 import UIKit
 
-class HorizontalCollectionViewCell: UICollectionViewCell {
+final class HorizontalCollectionViewCell: UICollectionViewCell {
     
     let dateFormater = DateFormatter()
 
-    @IBOutlet var timeLabel: UILabel!
-    @IBOutlet var tempLabel: UILabel!
-    @IBOutlet var weatherImageView: UIImageView!
+    @IBOutlet private var timeLabel: UILabel!
+    @IBOutlet private var tempLabel: UILabel!
+    @IBOutlet private var weatherImageView: UIImageView!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
     
     func configCollectionViewCell(model: ListModel) {
-        tempLabel.text = "\(Int(model.main.temp))°"
+        tempLabel.text = "\(Int(model.main.temperature))°"
         dateFormater.dateFormat = "yyyy-MM-dd HH:mm:mm"
         let dateFromNetwork = dateFormater.date(from: model.dt_txt)
         let hour = dateFromNetwork?.get(.hour) ?? 0

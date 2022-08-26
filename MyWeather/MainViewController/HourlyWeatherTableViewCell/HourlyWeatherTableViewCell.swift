@@ -8,11 +8,9 @@
 import UIKit
 
 final class HourlyWeatherTableViewCell: UITableViewCell {
-    
     var weatherArrayModel = [ListModel]()
-    var network = Network()
     
-    @IBOutlet var horizontalCollectionView: UICollectionView!
+    @IBOutlet private var horizontalCollectionView: UICollectionView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,13 +19,16 @@ final class HourlyWeatherTableViewCell: UITableViewCell {
         
         horizontalCollectionView.register(UINib(nibName: "HorizontalCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "HorizontalCollectionViewCell")
         
-        network.fetchForecast { forecast in
-            self.weatherArrayModel = forecast.list
-            self.horizontalCollectionView.reloadData()
-            }
-        
+//        network.fetchForecast { forecast in
+//            self.weatherArrayModel = forecast.list
+//            self.horizontalCollectionView.reloadData()
+//        }
     }
-
+    
+    func configure(with list: [ListModel]) {
+        weatherArrayModel = list
+        horizontalCollectionView.reloadData()
+    }
 }
 
 extension HourlyWeatherTableViewCell: UICollectionViewDataSource {

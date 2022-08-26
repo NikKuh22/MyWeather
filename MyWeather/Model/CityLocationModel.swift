@@ -7,8 +7,8 @@
 
 import UIKit
 
-struct CitiesModel {
+struct CityLocationModel {
     var name: String
-    var lat: String
-    var lon: String
+    var lat: Double
+    var lon: Double
 }

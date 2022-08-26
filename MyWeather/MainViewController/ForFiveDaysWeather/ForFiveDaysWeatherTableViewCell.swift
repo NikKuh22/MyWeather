@@ -8,19 +8,13 @@
 import UIKit
 
 final class ForFiveDaysWeatherTableViewCell: UITableViewCell {
+    @IBOutlet private var dayLabel: UILabel!
+    @IBOutlet private var weatherImageView: UIImageView!
+    @IBOutlet private var tempLabel: UILabel!
     
-    let dateFormater = DateFormatter()
-    
-    @IBOutlet var dayLabel: UILabel!
-    @IBOutlet var weatherImageView: UIImageView!
-    @IBOutlet var tempLabel: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
     func configureWeatherForFiveDays(modelHightTemp: ListModel, modelLowTemp: ListModel) {
-        tempLabel.text = "\(Int(modelHightTemp.main.temp))°/\(Int(modelLowTemp.main.temp))°"
+        let dateFormater = DateFormatter()
+        tempLabel.text = "\(Int(modelHightTemp.main.temperature))°/\(Int(modelLowTemp.main.temperature))°"
         dateFormater.dateFormat = "yyyy-MM-dd HH:mm:mm"
         let dateFromNetwork = dateFormater.date(from: modelLowTemp.dt_txt)
         let date = dateFromNetwork?.get(.day) ?? 0
@@ -36,6 +30,6 @@ final class ForFiveDaysWeatherTableViewCell: UITableViewCell {
 
 extension Date {
     func get(_ component: Calendar.Component, calendar: Calendar = Calendar.current) -> Int {
-            return calendar.component(component, from: self)
-        }
+        return calendar.component(component, from: self)
+    }
 }

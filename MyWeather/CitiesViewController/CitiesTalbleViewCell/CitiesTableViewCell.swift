@@ -15,7 +15,7 @@ class CitiesTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    func config(model: CitiesModel) {
+    func config(model: CityLocationModel) {
         self.nameCityLabel.text = "• \(model.name)"
     }
     

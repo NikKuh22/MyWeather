@@ -21,20 +21,4 @@ struct TodayWeatherNetworkModel: Decodable {
     var id: Int
     var name: String
     var cod: Int
-    
-    init() {
-        self.cord = CordModel()
-        self.weather = [WeatherModel]()
-        self.base = ""
-        self.main = MainModel()
-        self.visibility = 0
-        self.wind = WindModel()
-        self.clouds = CloudsModel()
-        self.dt = 0
-        self.sys = SysModel()
-        self.timezone = 0
-        self.id = 0
-        self.name = "Location"
-        self.cod = 0
-    }
 }

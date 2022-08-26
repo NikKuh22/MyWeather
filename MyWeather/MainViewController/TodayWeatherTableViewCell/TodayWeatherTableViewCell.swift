@@ -6,30 +6,29 @@
 //
 
 import UIKit
+protocol TodayWeatherTableViewCellDelegate: AnyObject {
+    func presentViewController()
+}
 
 final class TodayWeatherTableViewCell: UITableViewCell {
     
-    @IBOutlet var cityLabel: UILabel!
-    @IBOutlet var dayLabel: UILabel!
-    @IBOutlet var tempLabel: UILabel!
-    @IBOutlet var humidityLabel: UILabel!
-    @IBOutlet var windLabel: UILabel!
+    @IBOutlet private var cityLabel: UILabel!
+    @IBOutlet private var dayLabel: UILabel!
+    @IBOutlet private var tempLabel: UILabel!
+    @IBOutlet private var humidityLabel: UILabel!
+    @IBOutlet private var windLabel: UILabel!
     
-    @IBOutlet var weatherImage: UIImageView!
-
-    @IBAction func presentCities(_ sender: UIButton) {
-        let citiesViewController = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "CitiesViewController") as! CitiesViewController
-        self.window?.rootViewController?.present(citiesViewController, animated: true)
-    }
+    weak var delegate: TodayWeatherTableViewCellDelegate?
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    @IBOutlet private var weatherImage: UIImageView!
         
+    @IBAction private func presentCities(_ sender: UIButton) {
+        delegate?.presentViewController()
     }
     
     func configureTodayWeather(model: TodayWeatherNetworkModel) {
         cityLabel.text = model.name
-        tempLabel.text = "\(Int(model.main.temp))°"
+        tempLabel.text = "\(Int(model.main.temperature))°"
         humidityLabel.text = "\(model.main.humidity)%"
         windLabel.text = "\(model.wind.speed)m/s"
         weatherImage.image = model.weather.first?.main.image

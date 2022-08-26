@@ -5,60 +5,98 @@
 //  Created by Никита Анонимов on 16.08.2022.
 //
 
-import UIKit
+import Foundation
 
 final class Network {
+    private static let baseURL = URL(string: "https://api.openweathermap.org/data/2.5/")!
+    private static let forecastURL = baseURL.appendingPathComponent("forecast")
+    private static let weatherURL = baseURL.appendingPathComponent("weather")
     
-    static var lat = "49.4216100"
-
-    static var lon = "26.9965300"
-
-    static private let hourlyWeatherAPI = "https://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(lon)&appid=ab9e156b0d72b67b72bcf69beeef701b&units=metric"
-
-    static private let todayWeatherAPI = "https://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(lon)&appid=ab9e156b0d72b67b72bcf69beeef701b&units=metric"
-    
-    func fetchWeather(completion: @escaping (TodayWeatherNetworkModel) -> Void) {
-        
-        guard let todayWeatherURL = URL(string: Network.todayWeatherAPI) else { return }
-        
-        fetchTodayWeather(from: todayWeatherURL, completion: completion)
+    func fetchWeather(
+        latitude: Double,
+        longitude: Double,
+        completion: @escaping (Result<TodayWeatherNetworkModel, Error>) -> Void
+    ) {
+        fetch(
+            from: Self.weatherURL,
+            latitude: latitude,
+            longitude: longitude,
+            completion: completion
+        )
     }
     
-    func fetchForecast(completion: @escaping (HourlyWeatherNetworkModel) -> Void) {
-        guard let hourlyWeatherURL = URL(string: Network.hourlyWeatherAPI) else { return }
+    func fetchForecast(
+        latitude: Double,
+        longitude: Double,
+        completion: @escaping (Result<HourlyWeatherNetworkModel, Error>) -> Void
+    ) {
+        fetch(
+            from: Self.forecastURL,
+            latitude: latitude,
+            longitude: longitude,
+            completion: completion
+        )
+    }
+}
+
+extension Network {
+    enum Errors: Error {
+        case badURL
+    }
+}
+
+// MARK: - Private
+private extension Network {
+    func fetch<Model: Decodable>(
+        from baseURL: URL,
+        latitude: Double,
+        longitude: Double,
+        completion: @escaping (Result<Model, Error>) -> Void
+    ) {
+        guard var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: false) else {
+            completion(.failure(Errors.badURL))
+            return
+        }
         
-        fetchHourlyWeather(from: hourlyWeatherURL, completion: completion)
+        components.queryItems = generateQuery(latitude: latitude, longitude: longitude)
+        
+        guard let url = components.url else {
+            completion(.failure(Errors.badURL))
+            return
+        }
+        
+        fetch(from: url, completion: completion)
     }
     
-    private func fetchTodayWeather(from url: URL, completion: @escaping (TodayWeatherNetworkModel) -> Void) {
+    func fetch<Model: Decodable>(
+        from url: URL,
+        completion: @escaping (Result<Model, Error>) -> Void
+    ) {
         URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
             guard let data = data else { return }
 
             do {
-                let task = try JSONDecoder().decode(TodayWeatherNetworkModel.self, from: data)
+                let model = try JSONDecoder().decode(Model.self, from: data)
                 DispatchQueue.main.async {
-                    completion(task)
+                    completion(.success(model))
                 }
             } catch {
-                print(error)
+                completion(.failure(error))
             }
-
         }.resume()
     }
     
-    private func fetchHourlyWeather(from url: URL, completion: @escaping (HourlyWeatherNetworkModel) -> Void) {
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data else { return }
-
-            do {
-                let task = try JSONDecoder().decode(HourlyWeatherNetworkModel.self, from: data)
-                DispatchQueue.main.async {
-                    completion(task)
-                }
-            } catch {
-                print(error)
-            }
-
-        }.resume()
+    func generateQuery(latitude: Double, longitude: Double) -> [URLQueryItem] {
+        [
+            URLQueryItem(name: "lat", value: "\(latitude)"),
+            URLQueryItem(name: "lon", value: "\(longitude)"),
+            URLQueryItem(name: "appid", value: "ab9e156b0d72b67b72bcf69beeef701b"),
+            URLQueryItem(name: "units", value: "metric")
+        ]
     }
 }
