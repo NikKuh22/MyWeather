@@ -23,15 +23,15 @@ final class CitiesViewController: UIViewController {
         CityLocationModel(name: "Lviv", lat: 49.8383, lon: 24.0232),
         CityLocationModel(name: "Zaporozhye", lat: 47.8229, lon: 35.1903),
         CityLocationModel(name: "Dnieper", lat: 48.4593, lon: 35.0387),
-        CityLocationModel(name: "Vinnitsa", lat: 49.23308, lon: 28.46822),
+        CityLocationModel(name: "Vinnytsia", lat: 49.23308, lon: 28.46822),
         CityLocationModel(name: "Ivano-Frankivsk", lat: 48.9215, lon: 24.7097),
         CityLocationModel(name: "Mariupol", lat: 47.0951, lon: 37.5413),
         CityLocationModel(name: "Poltava", lat: 49.5937, lon: 34.5407),
         CityLocationModel(name: "Sumy", lat: 50.9216, lon: 34.8003),
-        CityLocationModel(name: "Khmelnitsky", lat: 49.4216100, lon: 26.9965300),
+        CityLocationModel(name: "Khmelnytskyi", lat: 49.4216100, lon: 26.9965300),
         CityLocationModel(name: "Ternopil", lat: 49.5534, lon: 25.5892),
         CityLocationModel(name: "Kherson", lat: 46.6558, lon: 32.6178),
-        CityLocationModel(name: "Mikolaev", lat: 46.9659, lon: 31.9974)
+        CityLocationModel(name: "Mycolayiv", lat: 46.9659, lon: 31.9974)
     ]
     
     @IBOutlet private var citiesTableView: UITableView!

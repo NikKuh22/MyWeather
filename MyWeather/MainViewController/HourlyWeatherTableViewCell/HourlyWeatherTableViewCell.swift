@@ -18,11 +18,7 @@ final class HourlyWeatherTableViewCell: UITableViewCell {
         horizontalCollectionView.dataSource = self
         
         horizontalCollectionView.register(UINib(nibName: "HorizontalCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "HorizontalCollectionViewCell")
-        
-//        network.fetchForecast { forecast in
-//            self.weatherArrayModel = forecast.list
-//            self.horizontalCollectionView.reloadData()
-//        }
+
     }
     
     func configure(with list: [ListModel]) {

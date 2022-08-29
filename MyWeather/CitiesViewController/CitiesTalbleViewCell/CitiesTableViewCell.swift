@@ -7,14 +7,10 @@
 
 import UIKit
 
-class CitiesTableViewCell: UITableViewCell {
+final class CitiesTableViewCell: UITableViewCell {
 
-    @IBOutlet var nameCityLabel: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
+    @IBOutlet private var nameCityLabel: UILabel!
+
     func config(model: CityLocationModel) {
         self.nameCityLabel.text = "• \(model.name)"
     }

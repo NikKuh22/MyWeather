@@ -50,11 +50,6 @@ final class WeatherViewController: UIViewController {
         update(latitude: 49.4216100, longitude: 26.9965300)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.weatherTableView.reloadData()
-    }
-    
     private func update(latitude: Double, longitude: Double) {
         network.fetchWeather(latitude: latitude, longitude: longitude) { [weak self] result in
             switch result {
