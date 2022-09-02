@@ -21,7 +21,7 @@ final class HourlyWeatherTableViewCell: UITableViewCell {
 
     }
     
-    func configure(with list: [ListModel]) {
+    func configureHourlyWeather(with list: [ListModel]) {
         weatherArrayModel = list
         horizontalCollectionView.reloadData()
     }

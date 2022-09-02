@@ -8,6 +8,7 @@
 import UIKit
 
 final class WeatherViewController: UIViewController {
+    
     @IBOutlet private var weatherTableView: UITableView!
     
     private var network = Network()
@@ -93,7 +94,7 @@ extension WeatherViewController: UITableViewDataSource {
         if indexPath.row == 1 {
             let cellSecond = tableView.dequeueReusableCell(withIdentifier: "HourlyWeatherTableViewCell", for: indexPath) as! HourlyWeatherTableViewCell
             if let list = hourlyWeatherModel?.list {
-                cellSecond.configure(with: list)
+                cellSecond.configureHourlyWeather(with: list)
             }
             return cellSecond
         }
