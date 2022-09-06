@@ -14,8 +14,33 @@ final class WeatherViewController: UIViewController {
     private var network = Network()
     private var todayWeatherModel: TodayWeatherNetworkModel?
     private var hourlyWeatherModel: HourlyWeatherNetworkModel?
-    private var listModel = [ListModel]()
+    private var listModel = [ListModel]() {
+        didSet {
+            weatherArrayIDs = listModel.filter { list in
+                list.dt_txt.contains("15:00:00")
+            }.map { _ in
+                UUID()
+            }
+        }
+    }
     
+    private let todayID = UUID()
+    private let hourlyID = UUID()
+    private var weatherArrayIDs = [UUID]()
+    private var dataSource: UITableViewDiffableDataSource<Int, UUID>!
+    
+    private var weatherArray: [(high: ListModel, low: ListModel)] {
+        let high = listModel.filter { list in
+            list.dt_txt.contains("15:00:00")
+        }
+        
+        let low = listModel.filter { list in
+            list.dt_txt.contains("21:00:00")
+        }
+        
+        return Array(zip(high, low))
+    }
+ 
     private var weatherArrayHigh: [ListModel] {
         return listModel.filter { list in
             list.dt_txt.contains("15:00:00")
@@ -30,8 +55,6 @@ final class WeatherViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        weatherTableView.dataSource = self
         
         weatherTableView.register(
             UINib(nibName: "TodayWeatherTableViewCell", bundle: .main),
@@ -48,7 +71,56 @@ final class WeatherViewController: UIViewController {
             forCellReuseIdentifier: "ForFiveDaysWeatherTableViewCell"
         )
         
+        createDataSource()
+        dataSource.defaultRowAnimation = .top
+        updateDataSource(animated: false)
+        
         update(latitude: 49.4216100, longitude: 26.9965300)
+    }
+    
+    private func createDataSource() {
+        dataSource = UITableViewDiffableDataSource(tableView: weatherTableView) { [weak self] tableView, indexPath, itemIdentifier in
+            guard let self = self else { return UITableViewCell() }
+            
+            if itemIdentifier == self.todayID {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "TodayWeatherTableViewCell", for: indexPath) as! TodayWeatherTableViewCell
+                if let todayWeatherModel = self.todayWeatherModel {
+                    cell.configureTodayWeather(model: todayWeatherModel)
+                }
+                cell.delegate = self
+                return cell
+            } else if itemIdentifier == self.hourlyID {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "HourlyWeatherTableViewCell", for: indexPath) as! HourlyWeatherTableViewCell
+                if let list = self.hourlyWeatherModel?.list {
+                    cell.configureHourlyWeather(with: list)
+                }
+                return cell
+            } else if let index = self.weatherArrayIDs.firstIndex(of: itemIdentifier) {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ForFiveDaysWeatherTableViewCell", for: indexPath) as! ForFiveDaysWeatherTableViewCell
+                let model = self.weatherArray[index]
+                cell.configureWeatherForFiveDays(modelHightTemp: model.high, modelLowTemp: model.low)
+                return cell
+            }
+            
+            return UITableViewCell()
+        }
+    }
+    
+    private func updateDataSource(animated: Bool = true) {
+        var snapshot = dataSource.snapshot()
+        if snapshot.sectionIdentifiers.isEmpty {
+            snapshot.appendSections([0])
+            snapshot.appendItems([todayID, hourlyID])
+            snapshot.appendSections([1])
+            snapshot.appendItems(weatherArrayIDs, toSection: 1)
+        } else {
+            snapshot.reconfigureItems([todayID, hourlyID])
+            snapshot.deleteSections([1])
+            snapshot.appendSections([1])
+            snapshot.appendItems(weatherArrayIDs, toSection: 1)
+        }
+        
+        dataSource.apply(snapshot, animatingDifferences: animated)
     }
     
     private func update(latitude: Double, longitude: Double) {
@@ -67,42 +139,12 @@ final class WeatherViewController: UIViewController {
             case .success(let forecast):
                 self?.hourlyWeatherModel = forecast
                 self?.listModel = forecast.list
-                self?.weatherTableView.reloadData()
+                self?.updateDataSource()
                 
             case .failure(let error):
                 print(error)
             }
         }
-    }
-}
-
-extension WeatherViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        weatherArrayHigh.count + 2
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            let cellFirst = tableView.dequeueReusableCell(withIdentifier: "TodayWeatherTableViewCell", for: indexPath) as! TodayWeatherTableViewCell
-            if let todayWeatherModel = todayWeatherModel {
-                cellFirst.configureTodayWeather(model: todayWeatherModel)
-            }
-            cellFirst.delegate = self
-            return cellFirst
-        }
-        
-        if indexPath.row == 1 {
-            let cellSecond = tableView.dequeueReusableCell(withIdentifier: "HourlyWeatherTableViewCell", for: indexPath) as! HourlyWeatherTableViewCell
-            if let list = hourlyWeatherModel?.list {
-                cellSecond.configureHourlyWeather(with: list)
-            }
-            return cellSecond
-        }
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ForFiveDaysWeatherTableViewCell", for: indexPath) as! ForFiveDaysWeatherTableViewCell
-//        cell.configureWeatherForFiveDays(model: weatherArrayHight[indexPath.row - 2])
-        cell.configureWeatherForFiveDays(modelHightTemp: weatherArrayHigh[indexPath.row - 2], modelLowTemp: weatherArrayLow[indexPath.row - 2])
-        return cell
     }
 }
 
