@@ -8,6 +8,7 @@
 import UIKit
 
 final class ForFiveDaysWeatherTableViewCell: UITableViewCell {
+    
     @IBOutlet private var dayLabel: UILabel!
     @IBOutlet private var weatherImageView: UIImageView!
     @IBOutlet private var tempLabel: UILabel!
@@ -25,11 +26,5 @@ final class ForFiveDaysWeatherTableViewCell: UITableViewCell {
             dayLabel.text = "\(date).\(month)"
         }
         weatherImageView.image = modelHightTemp.weather.first?.main.image
-    }
-}
-
-extension Date {
-    func get(_ component: Calendar.Component, calendar: Calendar = Calendar.current) -> Int {
-        return calendar.component(component, from: self)
     }
 }

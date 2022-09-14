@@ -8,6 +8,7 @@
 import UIKit
 
 final class HourlyWeatherTableViewCell: UITableViewCell {
+    
     var weatherArrayModel = [ListModel]()
     
     @IBOutlet private var horizontalCollectionView: UICollectionView!

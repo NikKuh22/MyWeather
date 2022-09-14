@@ -36,6 +36,7 @@
 		3A853D4728ABB72F00C4C6F8 /* HourlyWeatherNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A853D4628ABB72F00C4C6F8 /* HourlyWeatherNetworkModel.swift */; };
 		3A853D4E28ABC9BD00C4C6F8 /* ForFiveDaysWeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A853D4C28ABC9BD00C4C6F8 /* ForFiveDaysWeatherTableViewCell.swift */; };
 		3A853D4F28ABC9BD00C4C6F8 /* ForFiveDaysWeatherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A853D4D28ABC9BD00C4C6F8 /* ForFiveDaysWeatherTableViewCell.xib */; };
+		3AAD0BEF28D1CDBA001EB3C1 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD0BEE28D1CDBA001EB3C1 /* DateExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		3A853D4628ABB72F00C4C6F8 /* HourlyWeatherNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyWeatherNetworkModel.swift; sourceTree = "<group>"; };
 		3A853D4C28ABC9BD00C4C6F8 /* ForFiveDaysWeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForFiveDaysWeatherTableViewCell.swift; sourceTree = "<group>"; };
 		3A853D4D28ABC9BD00C4C6F8 /* ForFiveDaysWeatherTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForFiveDaysWeatherTableViewCell.xib; sourceTree = "<group>"; };
+		3AAD0BEE28D1CDBA001EB3C1 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 		3A853D1228AA426800C4C6F8 /* MyWeather */ = {
 			isa = PBXGroup;
 			children = (
+				3AAD0BED28D1CD74001EB3C1 /* Extensions */,
 				3A853D4428AB8B1000C4C6F8 /* Network.swift */,
 				3A853D3628AA7CF200C4C6F8 /* Support File */,
 				3A853D2928AA7B2A00C4C6F8 /* Model */,
@@ -214,6 +217,14 @@
 				3A853D4D28ABC9BD00C4C6F8 /* ForFiveDaysWeatherTableViewCell.xib */,
 			);
 			path = ForFiveDaysWeather;
+			sourceTree = "<group>";
+		};
+		3AAD0BED28D1CD74001EB3C1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3AAD0BEE28D1CDBA001EB3C1 /* DateExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,6 +320,7 @@
 				3A853D4728ABB72F00C4C6F8 /* HourlyWeatherNetworkModel.swift in Sources */,
 				3A5EDB1B28B4D24E00248638 /* CityLocationModel.swift in Sources */,
 				3A853D3328AA7C1E00C4C6F8 /* CloudsModel.swift in Sources */,
+				3AAD0BEF28D1CDBA001EB3C1 /* DateExtension.swift in Sources */,
 				3A5EDB1928B4B19F00248638 /* CitiesViewController.swift in Sources */,
 				3A853D1628AA426800C4C6F8 /* SceneDelegate.swift in Sources */,
 				3A853D4E28ABC9BD00C4C6F8 /* ForFiveDaysWeatherTableViewCell.swift in Sources */,
